@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css?family=Oxygen:400,700|Oswald");
+
+body {
+    font-family: "Oxygen", Helvetica, sans-serif;
+    font-size: 12pt;
+    padding: 10px 30px;
+    width: fit-content;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.main-title {
+    font-size: 32pt;
+}
+
+.info {
+    margin-top: 40px;
+    font-size: 16pt;
+}
+
+.summary {
+    margin-right: 20px;
+    margin-left: 2px;
+}
+
+a {
+    text-decoration: none;
+    border-bottom: 1px solid #0000ff;
+}
+
+.slides {
+    border-collapse: collapse;
+    min-width: 400px;
+    margin-top: 50px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.slides thead tr {
+    background-color: #ffffff;
+    color: #000000;
+    text-align: center;
+}
+
+.slides th,
+.slides td {
+    padding: 20px 30px;
+    text-align: center;
+}
+
+.slides tbody tr:nth-of-type(odd) {
+    background-color: #f3f3f3;
+}
+
+.slides tbody tr:nth-of-type(even) {
+    background-color: #ffffff;
+}
