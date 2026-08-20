@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ilya Maier</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<main>
+
+    <header>
+        <div class="intro">
+            <h1>Ilya Maier</h1>
+
+            <div class="subtitle">
+                Ph.D. Student in Applied and Computational Mathematics (PACM)<br>
+                Princeton University
+            </div>
+
+            <p>
+                I am a first-year Ph.D. student at Princeton, where I am fortunate
+                to be advised by
+                <a href="https://web.math.princeton.edu/~mchudnov/">Maria Chudnovsky</a>.
+                Prior to Princeton, I received my Bachelor's degree in Computer Science from ETH Zurich,
+                where I was advised by
+                <a href="https://rasmuskyng.com">Rasmus Kyng</a> and
+                <a href="https://sites.google.com/view/maximilianprobst/">Maximilian Probst Gutenberg</a>.
+            </p>
+
+            <p>
+                My research interests include structural graph theory and graph algorithms.
+            </p>
+
+            <p>
+                You can reach me at <a href="mailto:imaier@princeton.edu">imaier@princeton.edu</a>
+            </p>
+
+            <p>
+                And here is my <a href="cv.pdf">CV</a>
+            </p>
+
+        </div>
+
+        <img
+          src="photo.png"
+          alt="Ilya Maier"
+          class="profile-photo">
+    </header>
+
+
+    <section id="publications">
+        <h2>Publications & Preprints</h2>
+
+        <ol class="publications-list">
+            <li>
+                <div class="publication">
+                    <div class="publication-title">
+                        Finding Non-Bisimplicial Minimal Separators
+                    </div>
+
+                    <div class="publication-authors">
+                        with Maria Chudnovsky
+                    </div>
+
+                    <div>
+                        <em>in preparation</em>
+                    </div>
+
+                    <div class="publication-links">
+                        <!--                <a href="#">[paper]</a>-->
+                        <!--                <a href="#">[arXiv]</a>-->
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="publication">
+                    <div class="publication-title">
+                        On Induced Minor Obstructions to Bounded Treewidth
+                    </div>
+
+                    <div class="publication-authors">
+                        with Maria Chudnovsky and Nicolas Trotignon
+                    </div>
+
+                    <div>
+                        <em>in preparation</em>
+                    </div>
+
+                    <div class="publication-links">
+                        <!--                <a href="#">[paper]</a>-->
+                        <!--                <a href="#">[arXiv]</a>-->
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="publication">
+                    <div class="publication-title">
+                        Induced Cycles of Many Lengths
+                    </div>
+
+                    <div class="publication-authors">
+                        with Maria Chudnovsky
+                    </div>
+
+                    <div>
+                        <em>submitted</em>
+                    </div>
+
+                    <div class="publication-links">
+                        <a href="papers/induced%20cycles%20of%20many%20lengths.pdf">[paper]</a>
+                        <a href="https://arxiv.org/abs/2602.06874">[arXiv]</a>
+                    </div>
+                </div>
+            </li>
+        </ol>
+
+    </section>
+
+
+    <section id="teaching">
+        <h2>Teaching</h2>
+
+        <h3>Princeton University</h3>
+        <ul class="teaching-list">
+            <li>
+                <span>COS 423 — Theory of Algorithms</span>
+                <span class="term">Spring 2026</span>
+            </li>
+
+            <li>
+                <span>COS 330 — Great Ideas in Theoretical Computer Science</span>
+                <span class="term">Fall 2025</span>
+            </li>
+
+            <li>
+                <span>COS 423 — Theory of Algorithms</span>
+                <span class="term">Spring 2025</span>
+            </li>
+
+            <li>
+                <span>COS 240 — Reasoning about Computation</span>
+                <span class="term">Fall 2024</span>
+            </li>
+        </ul>
+
+        <h3>ETH Zurich</h3>
+        <ul class="teaching-list">
+            <li>
+                <span>Algorithms and Probability</span>
+                <span class="term">Spring 2024</span>
+            </li>
+
+            <li>
+                <span>Algorithms and Probability</span>
+                <span class="term">Spring 2023</span>
+            </li>
+
+            <li>
+                <span>Discrete Mathematics</span>
+                <span class="term">Fall 2022</span>
+            </li>
+        </ul>
+    </section>
+
+    <section id="miscellaneous">
+        <h2>Miscellaneous</h2>
+
+        <p>Here is a map of places I've been to and some <a href="/photos">photos</a> from there :)
+        Countries counter: 23</p>
+
+        <div id="travel-map"></div>
+        <div id="map-tooltip"></div>
+    </section>
+
+    <footer>
+        Last updated August 2026.
+    </footer>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+
+<script>
+    const visitedCountries = new Set([
+        "Russia",
+        "Germany",
+        "Austria",
+        "Denmark",
+        "Belgium",
+        "United Kingdom",
+        "France",
+        "Liechtenstein",
+        "Italy",
+        "Switzerland",
+        "United States of America",
+        "Thailand",
+        "Malaysia",
+        "Indonesia",
+        "Vietnam",
+        "India",
+        "Singapore",
+        "Philippines",
+        "Japan",
+        "South Korea",
+        "Hong Kong",
+        "China",
+        "Portugal"
+    ]);
+
+    const width = 1000;
+    const height = 500;
+
+    const svg = d3
+      .select("#travel-map")
+      .append("svg")
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("preserveAspectRatio", "xMidYMid meet");
+
+    const projection = d3.geoNaturalEarth1();
+
+    const path = d3.geoPath(projection);
+
+    const tooltip = d3.select("#map-tooltip");
+
+    d3.json(
+      "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json"
+    ).then(world => {
+
+        const countries = topojson.feature(
+          world,
+          world.objects.countries
+        );
+
+        projection.fitExtent(
+          [[10, 10], [width - 10, height - 10]],
+          countries
+        );
+
+        svg
+          .selectAll("path")
+          .data(countries.features)
+          .join("path")
+          .attr("d", path)
+          .attr("class", d =>
+            visitedCountries.has(d.properties.name)
+              ? "country visited"
+              : "country"
+          )
+
+          .on("mouseenter", function(event, d) {
+              d3.select(this)
+                .classed("hovered", true);
+
+              tooltip
+                .style("opacity", 1)
+                .text(d.properties.name);
+          })
+
+          .on("mousemove", function(event) {
+              tooltip
+                .style("left", `${event.pageX + 12}px`)
+                .style("top", `${event.pageY + 12}px`);
+          })
+
+          .on("mouseleave", function() {
+              d3.select(this)
+                .classed("hovered", false);
+
+              tooltip
+                .style("opacity", 0);
+          });
+    });
+</script>
+</body>
+</html>
