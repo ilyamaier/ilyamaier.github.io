@@ -245,18 +245,24 @@ footer {
 
 /* Mobile */
 
-@media (max-width: 200px) {
+@media (max-width: 500px) {
     main {
         margin-top: 40px;
     }
 
     header {
         flex-direction: column-reverse;
+        align-items: center;
+        gap: 1.5rem;
     }
 
     .profile-photo {
-        width: 200px;
-        height: 300px;
+        width: 150px;
+        height: 200px;
+    }
+
+    .intro {
+        width: 100%;
     }
 }
 
